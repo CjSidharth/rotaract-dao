@@ -6,7 +6,7 @@ import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import { anvil } from 'wagmi/chains'; // We'll use the pre-configured Anvil chain
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // 1. Get a project ID from https://cloud.walletconnect.com
 const projectId = 'YOUR_WALLETCONNECT_PROJECT_ID';
@@ -28,7 +28,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>
                     {children}
-                    <ReactQueryDevtools initialIsOpen={false} />
+                    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
                 </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>

@@ -100,7 +100,6 @@ export function ProposalList() {
 
     return (
         <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-gray-800 border-b pb-2">Proposals</h2>
             {proposals.map((proposal) => (
                 <ProposalCard
                     key={proposal.proposalId.toString()}

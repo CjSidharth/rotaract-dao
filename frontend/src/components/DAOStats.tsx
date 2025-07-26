@@ -1,25 +1,46 @@
-// src/components/DAOStats.tsx
 'use client';
 
 import { useBalance, useReadContract, useAccount } from 'wagmi';
 import { formatEther } from 'viem';
 import { tokenContract, treasuryContract } from '@/lib/contractConfig';
 
-// A reusable card component for consistent, stylish stats
-const StatCard = ({ title, value, unit }: { title: string, value: string | React.ReactNode, unit?: string }) => {
+const StatCard = ({ title, value, unit, icon }: { title: string, value: string | React.ReactNode, unit?: string, icon?: string }) => {
     return (
-        <div className="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl hover:-translate-y-1 transform transition-all duration-300">
-            <h3 className="text-base font-bold text-gray-500 uppercase tracking-wider">{title}</h3>
-            <div className="mt-2 text-4xl font-extrabold text-gray-800">
-                {value}
-                {unit && <span className="ml-2 text-2xl font-bold text-gray-400">{unit}</span>}
+        <div className="relative bg-gradient-to-br from-amber-50/10 to-yellow-100/10 backdrop-blur-sm rounded-2xl shadow-2xl border border-amber-300/30 hover:border-amber-400/50 transition-all duration-500">
+            <div className="relative p-8">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-bold text-amber-400 uppercase tracking-widest">
+                        {title}
+                    </h3>
+                    {icon && (
+                        <span className="text-2xl transition-transform duration-300 hover:scale-110">
+                            {icon}
+                        </span>
+                    )}
+                </div>
+                
+                <div className="flex items-baseline space-x-2">
+                    <div className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-amber-100 to-white">
+                        {value}
+                    </div>
+                    {unit && (
+                        <span className="text-lg font-semibold text-amber-300/80 hover:text-amber-300 transition-colors duration-300">
+                            {unit}
+                        </span>
+                    )}
+                </div>
+                
+                <div className="mt-4 h-1 w-0 hover:w-full bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full transition-all duration-700"></div>
             </div>
         </div>
     );
 };
 
-// A skeleton loader for a better loading experience
-const SkeletonLoader = () => <div className="h-10 bg-gray-200 rounded-md animate-pulse w-3/4 mt-2"></div>;
+const SkeletonLoader = () => (
+    <div className="h-10 bg-gradient-to-r from-amber-200/20 via-yellow-200/30 to-amber-200/20 rounded-lg animate-pulse w-3/4 mt-2">
+        <div className="h-full bg-gradient-to-r from-transparent via-amber-300/10 to-transparent animate-pulse"></div>
+    </div>
+);
 
 export function DAOStats() {
     const { address: userAddress } = useAccount();
@@ -40,18 +61,17 @@ export function DAOStats() {
         query: { enabled: !!userAddress },
     });
 
-    // Helper function to format large numbers with commas for readability
     const formatNumberWithCommas = (numStr: string) => {
-        // Remove decimals before formatting for whole numbers
         const wholeNumber = numStr.split('.')[0];
         return new Intl.NumberFormat('en-US').format(BigInt(wholeNumber));
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StatCard
                 title="Treasury Balance"
                 unit="ETH"
+                icon=""
                 value={
                     isTreasuryLoading ? <SkeletonLoader /> :
                         (treasuryBalance ? parseFloat(formatEther(treasuryBalance.value)).toFixed(2) : '0.00')
@@ -60,6 +80,7 @@ export function DAOStats() {
             <StatCard
                 title="Total Token Supply"
                 unit="RTC"
+                icon=""
                 value={
                     isSupplyLoading ? <SkeletonLoader /> :
                         (typeof totalSupply === 'bigint' ? formatNumberWithCommas(formatEther(totalSupply)) : '0')
@@ -68,8 +89,13 @@ export function DAOStats() {
             <StatCard
                 title="Your Voting Power"
                 unit={userAddress ? "Votes" : ""}
+                icon=""
                 value={
-                    !userAddress ? <span className="text-2xl text-gray-500">Connect Wallet</span> :
+                    !userAddress ? (
+                        <span className="text-xl text-amber-300/70 font-medium">
+                            Connect Wallet
+                        </span>
+                    ) :
                         isVotesLoading ? <SkeletonLoader /> :
                             (typeof votingPower === 'bigint' ? formatNumberWithCommas(formatEther(votingPower)) : '0')
                 }
