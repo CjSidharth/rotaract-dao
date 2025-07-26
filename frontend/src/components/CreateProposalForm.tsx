@@ -89,6 +89,11 @@ export function CreateProposalForm() {
         }
     };
 
+    const inputStyle = "block w-full border border-gray-300 rounded-lg shadow-sm p-3 text-base " +
+        "text-gray-900 placeholder-gray-400 " + // Sets text and placeholder color
+        "focus:ring-2 focus:ring-blue-500 focus:border-blue-500 " + // Enhanced focus state
+        "transition-colors duration-200";
+
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             {/* Description Input */}
@@ -101,7 +106,7 @@ export function CreateProposalForm() {
                         id="description"
                         name="description"
                         rows={3}
-                        className="block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                        className={inputStyle}
                         placeholder="E.g., Fund the Q3 Developer Grants"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
@@ -119,7 +124,7 @@ export function CreateProposalForm() {
                         type="text"
                         name="recipient"
                         id="recipient"
-                        className="block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                        className={inputStyle}
                         placeholder="0x..."
                         value={recipient}
                         onChange={(e) => setRecipient(e.target.value)}
@@ -138,7 +143,7 @@ export function CreateProposalForm() {
                         name="amount"
                         id="amount"
                         step="0.01"
-                        className="block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500"
+                        className={inputStyle}
                         placeholder="0.5"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}

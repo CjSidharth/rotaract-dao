@@ -16,7 +16,7 @@ contract DeployDAO is Script {
 
     // --- Constants ---
     uint256 private constant INITIAL_SUPPLY = 1000000 * 10 ** 18;
-    uint256 private constant MIN_DELAY = 3600; // 1 hour
+    uint256 private constant MIN_DELAY = 2; // 2 seconds
     uint256 public constant PERCENT_TO_TREASURY = 50; // 50%
     uint256 private constant TREASURY_FUNDING = 1000 ether; // A reasonable funding amount
 
@@ -77,7 +77,7 @@ contract DeployDAO is Script {
 
         // You can still allow anyone to execute, but the Governor must be an executor.
         console.log("Granting EXECUTOR_ROLE to address(0) (anyone) as well...");
-        timelock.grantRole(executorRole, address(0)); 
+        timelock.grantRole(executorRole, address(0));
 
         timelock.grantRole(proposerRole, address(governor));
         timelock.revokeRole(adminRole, msg.sender);
