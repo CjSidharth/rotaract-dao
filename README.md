@@ -1,12 +1,12 @@
-# RotaractDAO
+# RotaractDAO: A Decentralized Governance Platform
 ![Dashboard](./images/dashboard.png)
-A decentralized autonomous organization (DAO) reimagining the traditional Rotaract Club model through blockchain technology. RotaractDAO introduces full transparency in fund management by leveraging a community treasury governed by smart contracts. Members can submit proposals, vote on initiatives, and automatically receive approved funds via secure on-chain transactions: eliminating opacity and enabling trustless coordination.
+This project is a complete Decentralized Autonomous Organization (DAO) built from the ground up to bring transparency, security, and democratic governance to community organizations like the Rotaract Club. It solves the common challenge of managing club finances by moving all decision-making and fund management on-chain.
 
-## Key Features
-- Blockchain-based community treasury
-- Proposal and voting mechanism
-- Smart contract-driven fund disbursement
-- Transparent, decentralized governance for community clubs
+## Core Features
+- **On-Chain Governance**: A full proposal lifecycle (propose, vote, queue, execute) managed by smart contracts. Every decision is recorded transparently on the blockchain.
+- **ERC20Votes Token** ($RTC): Members are issued tokens that represent their voting power, which can be delegated to other members.
+- **Secure, Timelock-Controlled Treasury**: The DAO's funds are held in a secure Treasury contract. Funds can only be transferred after a proposal has been successfully voted on and has passed a mandatory security time delay (Timelock).
+- **Autonomous & Immutable**: Once deployed, the core rules of the DAO are made immutable by transferring ownership of the system to the Timelock itself, removing any single point of failure.
 
 # Prerequisites
 - foundry
