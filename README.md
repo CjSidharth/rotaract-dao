@@ -10,7 +10,7 @@ This project is a complete Decentralized Autonomous Organization (DAO) built fro
 
 # System Architecture
 The system operates through a clear chain of command, ensuring separation of powers:
-Members (vote with $RTC) ➔ RotaractGovernor (The Voting Machine) ➔ RotaractTimelock (The Secure Executor) ➔ Treasury (The Vault)
+- Members (vote with $RTC) ➔ RotaractGovernor (The Voting Machine) ➔ RotaractTimelock (The Secure Executor) ➔ Treasury (The Vault)
 
 # Prerequisites
 - foundry
