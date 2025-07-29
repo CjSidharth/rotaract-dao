@@ -6,7 +6,7 @@ A decentralized autonomous organization (DAO) reimagining the traditional Rotara
 - Blockchain-based community treasury
 - Proposal and voting mechanism
 - Smart contract-driven fund disbursement
-- Transparent, decentralized governance for community clubsA
+- Transparent, decentralized governance for community clubs
 
 # Prerequisites
 - foundry
