@@ -8,6 +8,10 @@ This project is a complete Decentralized Autonomous Organization (DAO) built fro
 - **Secure, Timelock-Controlled Treasury**: The DAO's funds are held in a secure Treasury contract. Funds can only be transferred after a proposal has been successfully voted on and has passed a mandatory security time delay (Timelock).
 - **Autonomous & Immutable**: Once deployed, the core rules of the DAO are made immutable by transferring ownership of the system to the Timelock itself, removing any single point of failure.
 
+# System Architecture
+The system operates through a clear chain of command, ensuring separation of powers:
+Members (vote with $RTC) ➔ RotaractGovernor (The Voting Machine) ➔ RotaractTimelock (The Secure Executor) ➔ Treasury (The Vault)
+
 # Prerequisites
 - foundry
 - npm
